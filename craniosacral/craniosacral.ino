@@ -10,27 +10,28 @@ Servo cri;
 
 // 2 - 2.5 cycles per minute
 unsigned long midtide_last = 0; 
-unsigned long midtide_interval = 135000; 
+unsigned long midtide_interval = 150; //135000; 
 byte midtide_direction = 1;
-byte midtide_pos = 0;
+byte midtide_pos = 45;
 
 // 100 secs per cycle
 unsigned long longtide_last = 0; 
-unsigned long longtide_interval = 100000; 
+unsigned long longtide_interval = 500; 
 byte longtide_direction = 1;
-byte longtide_pos = 0;
+byte longtide_pos = 45;
 
 // 8 - 14 cycles per minute
 unsigned long cri_last = 0; 
-unsigned long cri_interval = 600000; 
+unsigned long cri_interval = 26; //600000; 
 byte cri_direction = 1;
-byte cri_pos = 0;
+byte cri_pos = 45;
  
 void setup() 
 { 
   midtide.attach(4);
   longtide.attach(5);
   cri.attach(6);
+
 } 
  
  
