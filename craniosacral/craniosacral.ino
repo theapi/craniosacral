@@ -10,21 +10,21 @@ Servo cri;
 
 // 2 - 2.5 cycles per minute
 unsigned long midtide_last = 0; 
-unsigned long midtide_interval = 150; //135000; 
+unsigned long midtide_interval = 28;
 byte midtide_direction = 1;
-byte midtide_pos = 45;
+long midtide_pos = 1750;
 
 // 100 secs per cycle
 unsigned long longtide_last = 0; 
-unsigned long longtide_interval = 500; 
+unsigned long longtide_interval = 50; 
 byte longtide_direction = 1;
-byte longtide_pos = 45;
+long longtide_pos = 1750;
 
 // 8 - 14 cycles per minute
 unsigned long cri_last = 0; 
-unsigned long cri_interval = 26; //600000; 
+unsigned long cri_interval = 4; 
 byte cri_direction = 1;
-byte cri_pos = 45;
+long cri_pos = 1750;
  
 void setup() 
 { 
@@ -37,7 +37,7 @@ void setup()
  
 void loop() 
 { 
-  
+  //midtide.writeMicroseconds(1250);
   unsigned long now = millis();
   
   // mid tide
@@ -45,16 +45,16 @@ void loop()
     midtide_last = now;
     if (midtide_direction) {
       midtide_pos++;
-      if (midtide_pos <= 135) {
-        midtide.write(midtide_pos);
+      if (midtide_pos <= 1750) {
+        midtide.writeMicroseconds(midtide_pos);
       } else {
         midtide_direction = !midtide_direction;
       }  
     }
     if (!midtide_direction) {
       midtide_pos--;
-      if (midtide_pos >= 45) {
-        midtide.write(midtide_pos);
+      if (midtide_pos >= 1250) {
+        midtide.writeMicroseconds(midtide_pos);
       } else {
         midtide_direction = !midtide_direction;
       }  
@@ -66,16 +66,16 @@ void loop()
     longtide_last = now;
     if (longtide_direction) {
       longtide_pos++;
-      if (longtide_pos <= 135) {
-        longtide.write(longtide_pos);
+      if (longtide_pos <= 1750) {
+        longtide.writeMicroseconds(longtide_pos);
       } else {
         longtide_direction = !longtide_direction;
       }  
     }
     if (!longtide_direction) {
       longtide_pos--;
-      if (longtide_pos >= 45) {
-        longtide.write(longtide_pos);
+      if (longtide_pos >= 1250) {
+        longtide.writeMicroseconds(longtide_pos);
       } else {
         longtide_direction = !longtide_direction;
       }  
@@ -87,16 +87,16 @@ void loop()
     cri_last = now;
     if (cri_direction) {
       cri_pos++;
-      if (cri_pos <= 135) {
-        cri.write(cri_pos);
+      if (cri_pos <= 1750) {
+        cri.writeMicroseconds(cri_pos);
       } else {
         cri_direction = !cri_direction;
       }  
     }
     if (!cri_direction) {
       cri_pos--;
-      if (cri_pos >= 45) {
-        cri.write(cri_pos);
+      if (cri_pos >= 1250) {
+        cri.writeMicroseconds(cri_pos);
       } else {
         cri_direction = !cri_direction;
       }  
