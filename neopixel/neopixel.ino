@@ -13,7 +13,13 @@
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_PIXELS, PIN_NEO, NEO_GRB + NEO_KHZ800);
 
+byte r;
+byte g;
+byte b;
 
+byte pixel_cri = 0;
+byte pixel_midtide = 0;
+byte pixel_longtide = 0;
 
 void setup() 
 {
@@ -28,9 +34,29 @@ void setup()
 
 void loop() 
 {
-  show_cri();
-  show_midtide();
-  show_longtide();
+  cri();
+  midtide();
+  longtide();
+  
+  for (byte n = 0; n < NUM_PIXELS; n++) {
+    if (n == pixel_cri) {
+      r = 255;
+    } else {
+      r = 0; 
+    }
+    if (n == pixel_midtide) {
+      g = 255;
+    } else {
+      g = 0; 
+    }
+    if (n == pixel_longtide) {
+      b = 255;
+    } else {
+      b = 0; 
+    }
+    strip.setPixelColor(n, r, g, b);
+  }
+  strip.show();
 }
 
 /**
@@ -41,17 +67,19 @@ void loop()
  * 1000 / 2.933333 = 340.9
  * so an interval of 341
  */
-void show_cri() {
+void cri() {
   static unsigned long last = 0; 
   static long interval = 341; 
+  static byte n = 0;
   
   unsigned long now = millis();
   if (now - last > interval) {
-    last = now;    
-    for (byte n = 0; n < NUM_PIXELS; n++) {
-       strip.setPixelColor(n, 255, 0, 0);
+    last = now; 
+    n++;  
+    if (n >= NUM_PIXELS) {
+       n = 0; 
     }
-    strip.show();
+    pixel_cri = n;
   }
 }
 
@@ -63,17 +91,19 @@ void show_cri() {
  * 1000 / 0.6 = 1666.666
  * so an interval of 1667
  */
-void show_midtide() {
+void midtide() {
   static unsigned long last = 0; 
   static long interval = 1667; 
+  static byte n = 0;
   
   unsigned long now = millis();
   if (now - last > interval) {
-    last = now;    
-    for (byte n = 0; n < NUM_PIXELS; n++) {
-       strip.setPixelColor(n, 0, 255, 0);
+    last = now; 
+    n++;  
+    if (n >= NUM_PIXELS) {
+       n = 0; 
     }
-    strip.show();
+    pixel_midtide = n;
   }
 }
 
@@ -82,17 +112,19 @@ void show_midtide() {
  * 100 / 16 = 6.25 seconds per pixel
  * so an interval of 6250
  */
-void show_longtide() {
+void longtide() {
   static unsigned long last = 0; 
   static long interval = 6250; 
+  static byte n = 0;
   
   unsigned long now = millis();
   if (now - last > interval) {
-    last = now;    
-    for (byte n = 0; n < NUM_PIXELS; n++) {
-       strip.setPixelColor(n, 0, 255, 0);
+    last = now; 
+    n++;  
+    if (n >= NUM_PIXELS) {
+       n = 0; 
     }
-    strip.show();
+    pixel_longtide = n;
   }
 }
 
