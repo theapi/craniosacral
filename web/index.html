@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <meta charset="utf-8" />
+    <title>Frequencies</title>
+    
+    
+    <style>
+
+  </style> 
+  
+<script>
+  
+function init() {
+/**
+ * 8 - 14 cycles per minute (11)
+ * 
+ * 11 * 16 = 176 pixels per minute
+ * 176 / 60 = 2.93 pixels per second
+ * 1000 / 2.933333 = 340.9
+ * so an interval of 341
+ */
+  setInterval(draw_cri, 341);
+  
+/**
+ * 2 - 2.5 cycles per minute (2.25)
+ * 
+ * 2.25 * 16 = 36 pixels per minute
+ * 36 / 60 = 0.6 pixels per second
+ * 1000 / 0.6 = 1666.666
+ * so an interval of 1667
+ */
+  setInterval(draw_midtide, 1667);
+  
+/**
+ * 100 seconds per cycle
+ * 100 / 16 = 6.25 seconds per pixel
+ * so an interval of 6250
+ */
+  setInterval(draw_longtide, 6250);
+}
+
+
+function draw_cri() {
+    if (typeof draw_cri.radius == 'undefined') {
+      draw_cri.radius = 10;
+      draw_cri.direction = 1;
+      draw_cri.x = 100;
+      draw_cri.y = 100;
+    }
+    var canvas = document.getElementById('cri');
+    var ctx = canvas.getContext('2d');
+
+    ctx.beginPath();
+    ctx.lineWidth=5;
+    
+    if (draw_cri.radius >= 100) {
+        draw_cri.direction = 0;
+    } else if (draw_cri.radius <= 10) {
+        draw_cri.direction = 1;
+    } 
+    
+    if (draw_cri.direction) {
+        draw_cri.radius+=1;
+        ctx.fillStyle = 'rgb(0, 100, 200)';
+        ctx.arc(draw_cri.x, draw_cri.y, draw_cri.radius, 0, Math.PI*2, false);
+        ctx.fill();
+    } else {
+        draw_cri.radius-=1;
+        ctx.strokeStyle = 'rgb(255, 255, 255)';
+        ctx.arc(draw_cri.x, draw_cri.y, draw_cri.radius + 3, 0, Math.PI*2, false);  
+        ctx.stroke();
+    }
+
+    ctx.restore();
+}
+
+function draw_midtide() {
+    if (typeof draw_midtide.radius == 'undefined') {
+      draw_midtide.radius = 10;
+      draw_midtide.direction = 1;
+      draw_midtide.x = 100;
+      draw_midtide.y = 100;
+    }
+    var canvas = document.getElementById('midtide');
+    var ctx = canvas.getContext('2d');
+    
+    ctx.beginPath();
+    ctx.lineWidth=5;
+    
+    if (draw_midtide.radius >= 100) {
+        draw_midtide.direction = 0;
+    } else if (draw_midtide.radius <= 10) {
+        draw_midtide.direction = 1;
+    } 
+    
+    if (draw_midtide.direction) {
+        draw_midtide.radius+=1;
+        ctx.fillStyle = 'rgb(0, 100, 200)';
+        ctx.arc(draw_midtide.x, draw_midtide.y, draw_midtide.radius, 0, Math.PI*2, false);
+        ctx.fill();
+    } else {
+        draw_midtide.radius-=1;
+        ctx.strokeStyle = 'rgb(255, 255, 255)';
+        ctx.arc(draw_midtide.x, draw_midtide.y, draw_midtide.radius + 3, 0, Math.PI*2, false);  
+        ctx.stroke();
+    }
+
+    ctx.restore();
+}
+
+function draw_longtide() {
+    if (typeof draw_longtide.radius == 'undefined') {
+      draw_longtide.radius = 10;
+      draw_longtide.direction = 1;
+      draw_longtide.x = 100;
+      draw_longtide.y = 100;
+    }
+    var canvas = document.getElementById('longtide');
+    var ctx = canvas.getContext('2d');
+    
+    ctx.beginPath();
+    ctx.lineWidth=5;
+    
+    if (draw_longtide.radius >= 100) {
+        draw_longtide.direction = 0;
+    } else if (draw_longtide.radius <= 10) {
+        draw_longtide.direction = 1;
+    } 
+    
+    if (draw_longtide.direction) {
+        draw_longtide.radius+=1;
+        ctx.fillStyle = 'rgb(0, 100, 200)';
+        ctx.arc(draw_longtide.x, draw_longtide.y, draw_longtide.radius, 0, Math.PI*2, false);
+        ctx.fill();
+    } else {
+        draw_longtide.radius-=1;
+        ctx.strokeStyle = 'rgb(255, 255, 255)';
+        ctx.arc(draw_longtide.x, draw_longtide.y, draw_longtide.radius + 3, 0, Math.PI*2, false);  
+        ctx.stroke();
+    }
+
+    ctx.restore();
+}
+  
+</script>
+  
+  </head>
+  <body onload="init()">
+  
+  <canvas id="cri" width='200px' height='200px'></canvas>
+  <canvas id="longtide" width='200px' height='200px'></canvas>
+  <canvas id="midtide" width='200px' height='200px'></canvas>
+  
+  </body>
+</html>
