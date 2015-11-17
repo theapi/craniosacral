@@ -63,15 +63,17 @@ function draw_cri() {
         ctx.stroke();
     }
     
-    ctx.fillStyle = "#FFFFFF";
-    ctx.fillRect(0,0,50,10);
-    ctx.fillStyle = "#000000";
-    var d = new Date();
-    var diff = (d.getTime() - start) / 1000;
-    ctx.fillText(diff, 10, 10);
-    
-    ctx.fillStyle = "#000000";
-    ctx.fillText(draw_cri.cycles, 98, 104);
+    if (window.location.search) {
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fillRect(0,0,50,10);
+        ctx.fillStyle = "#000000";
+        var d = new Date();
+        var diff = (d.getTime() - start) / 1000;
+        ctx.fillText(diff, 10, 10);
+        
+        ctx.fillStyle = "#000000";
+        ctx.fillText(draw_cri.cycles, 98, 104);
+    }
     
     
     ctx.restore();
@@ -113,8 +115,10 @@ function draw_midtide() {
         ctx.stroke();
     }
 
-    ctx.fillStyle = "#000000";
-    ctx.fillText(draw_midtide.cycles, 98, 104);
+    if (window.location.search) {
+        ctx.fillStyle = "#000000";
+        ctx.fillText(draw_midtide.cycles, 98, 104);
+    }
     
     ctx.restore();
 }
@@ -155,8 +159,10 @@ function draw_longtide() {
         ctx.stroke();
     }
     
-    ctx.fillStyle = "#FFFFFF";
-    ctx.fillText(draw_longtide.cycles, 98, 104);
+    if (window.location.search) {
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fillText(draw_longtide.cycles, 98, 104);
+    }
 
     ctx.restore();
 }
