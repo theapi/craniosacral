@@ -11,17 +11,19 @@
   </style> 
   
 <script>
-  
-function init() {
+  var date = new Date();
+  var start = date.getTime();
 
+function init() {
+  
   // 8 - 14 cycles per minute (11)
   setInterval(draw_cri, 1);
   
   // 2 - 2.5 cycles per minute (2.25)
-  setInterval(draw_midtide, 167);
+  setInterval(draw_midtide, 28);
   
   // 100 seconds per cycle
-  setInterval(draw_longtide, 625);
+  setInterval(draw_longtide, 55);
 }
 
 
@@ -31,34 +33,47 @@ function draw_cri() {
       draw_cri.direction = 1;
       draw_cri.x = 100;
       draw_cri.y = 100;
-      draw_cri.cycles = 0;
+      draw_cri.cycles = -1;
     }
     var canvas = document.getElementById('cri');
     var ctx = canvas.getContext('2d');
 
+    ctx.fillStyle = "#FF0000";
+    ctx.fillText(draw_cri.cycles, 98, 104);
+    
     ctx.beginPath();
     ctx.lineWidth=2;
     
     if (draw_cri.radius >= 100) {
         draw_cri.direction = 0;
-        draw_cri.cycles++;
     } else if (draw_cri.radius <= 10) {
         draw_cri.direction = 1;
+        draw_cri.cycles++;
     } 
     
     if (draw_cri.direction) {
         draw_cri.radius+=0.2;
-        ctx.fillStyle = 'rgba(0, 100, 200, 0.8)';
+        ctx.fillStyle = 'rgb(255, 0, 0)';
         ctx.arc(draw_cri.x, draw_cri.y, draw_cri.radius, 0, Math.PI*2, false);
         ctx.fill();
     } else {
         draw_cri.radius-=0.2;
-        ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
+        ctx.strokeStyle = 'rgb(255, 255, 255)';
         ctx.arc(draw_cri.x, draw_cri.y, draw_cri.radius + 3, 0, Math.PI*2, false);  
         ctx.stroke();
     }
-    //ctx.fillRect(0,190,150,200);
-    //ctx.fillText(draw_cri.cycles, 0, 190);
+    
+    ctx.fillStyle = "#FFFFFF";
+    ctx.fillRect(0,0,50,10);
+    ctx.fillStyle = "#000000";
+    var d = new Date();
+    var diff = (d.getTime() - start) / 1000;
+    ctx.fillText(diff, 10, 10);
+    
+    ctx.fillStyle = "#000000";
+    ctx.fillText(draw_cri.cycles, 98, 104);
+    
+    
     ctx.restore();
 }
 
@@ -68,31 +83,39 @@ function draw_midtide() {
       draw_midtide.direction = 1;
       draw_midtide.x = 100;
       draw_midtide.y = 100;
+      draw_midtide.cycles = -1;
     }
     var canvas = document.getElementById('midtide');
     var ctx = canvas.getContext('2d');
     
     ctx.beginPath();
-    ctx.lineWidth=5;
+    ctx.lineWidth=2;
+    
+    ctx.fillStyle = "#FF0000";
+    ctx.fillText(draw_midtide.cycles, 98, 104);
     
     if (draw_midtide.radius >= 100) {
         draw_midtide.direction = 0;
     } else if (draw_midtide.radius <= 10) {
         draw_midtide.direction = 1;
+        draw_midtide.cycles++;
     } 
     
     if (draw_midtide.direction) {
-        draw_midtide.radius+=0.1;
-        ctx.fillStyle = 'rgb(0, 100, 200)';
+        draw_midtide.radius+=0.2;
+        ctx.fillStyle = 'rgb(255, 127, 80)';
         ctx.arc(draw_midtide.x, draw_midtide.y, draw_midtide.radius, 0, Math.PI*2, false);
         ctx.fill();
     } else {
-        draw_midtide.radius-=0.1;
+        draw_midtide.radius-=0.2;
         ctx.strokeStyle = 'rgb(255, 255, 255)';
         ctx.arc(draw_midtide.x, draw_midtide.y, draw_midtide.radius + 3, 0, Math.PI*2, false);  
         ctx.stroke();
     }
 
+    ctx.fillStyle = "#000000";
+    ctx.fillText(draw_midtide.cycles, 98, 104);
+    
     ctx.restore();
 }
 
@@ -102,22 +125,27 @@ function draw_longtide() {
       draw_longtide.direction = 1;
       draw_longtide.x = 100;
       draw_longtide.y = 100;
+      draw_longtide.cycles = -1;
     }
     var canvas = document.getElementById('longtide');
     var ctx = canvas.getContext('2d');
     
     ctx.beginPath();
-    ctx.lineWidth=5;
+    ctx.lineWidth=2;
+    
+    ctx.fillStyle = "#0000FF";
+    ctx.fillText(draw_longtide.cycles, 98, 104);
     
     if (draw_longtide.radius >= 100) {
         draw_longtide.direction = 0;
     } else if (draw_longtide.radius <= 10) {
         draw_longtide.direction = 1;
+        draw_longtide.cycles++;
     } 
     
     if (draw_longtide.direction) {
         draw_longtide.radius+=0.1;
-        ctx.fillStyle = 'rgb(0, 100, 200)';
+        ctx.fillStyle = 'rgb(0, 0, 255)';
         ctx.arc(draw_longtide.x, draw_longtide.y, draw_longtide.radius, 0, Math.PI*2, false);
         ctx.fill();
     } else {
@@ -126,6 +154,9 @@ function draw_longtide() {
         ctx.arc(draw_longtide.x, draw_longtide.y, draw_longtide.radius + 3, 0, Math.PI*2, false);  
         ctx.stroke();
     }
+    
+    ctx.fillStyle = "#FFFFFF";
+    ctx.fillText(draw_longtide.cycles, 98, 104);
 
     ctx.restore();
 }
