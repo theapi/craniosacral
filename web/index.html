@@ -52,12 +52,12 @@ function draw_cri() {
     } 
     
     if (draw_cri.direction) {
-        draw_cri.radius+=0.2;
+        draw_cri.radius+=0.18;
         ctx.fillStyle = 'rgb(255, 0, 0)';
         ctx.arc(draw_cri.x, draw_cri.y, draw_cri.radius, 0, Math.PI*2, false);
         ctx.fill();
     } else {
-        draw_cri.radius-=0.2;
+        draw_cri.radius-=0.18;
         ctx.strokeStyle = 'rgb(255, 255, 255)';
         ctx.arc(draw_cri.x, draw_cri.y, draw_cri.radius + 3, 0, Math.PI*2, false);  
         ctx.stroke();
