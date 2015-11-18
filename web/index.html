@@ -38,8 +38,10 @@ function draw_cri() {
     var canvas = document.getElementById('cri');
     var ctx = canvas.getContext('2d');
 
-    ctx.fillStyle = "#FF0000";
-    ctx.fillText(draw_cri.cycles, 98, 104);
+    if (window.location.search) {
+        ctx.fillStyle = "#FF0000";
+        ctx.fillText(draw_cri.cycles, 98, 104);
+    }
     
     ctx.beginPath();
     ctx.lineWidth=2;
@@ -75,7 +77,6 @@ function draw_cri() {
         ctx.fillText(draw_cri.cycles, 98, 104);
     }
     
-    
     ctx.restore();
 }
 
@@ -93,8 +94,10 @@ function draw_midtide() {
     ctx.beginPath();
     ctx.lineWidth=2;
     
-    ctx.fillStyle = "#FF0000";
-    ctx.fillText(draw_midtide.cycles, 98, 104);
+    if (window.location.search) {
+        ctx.fillStyle = "#FF0000";
+        ctx.fillText(draw_midtide.cycles, 98, 104);
+    }
     
     if (draw_midtide.radius >= 100) {
         draw_midtide.direction = 0;
@@ -137,8 +140,10 @@ function draw_longtide() {
     ctx.beginPath();
     ctx.lineWidth=2;
     
-    ctx.fillStyle = "#0000FF";
-    ctx.fillText(draw_longtide.cycles, 98, 104);
+    if (window.location.search) {
+        ctx.fillStyle = "#0000FF";
+        ctx.fillText(draw_longtide.cycles, 98, 104);
+    }
     
     if (draw_longtide.radius >= 100) {
         draw_longtide.direction = 0;
@@ -172,12 +177,16 @@ function draw_longtide() {
   </head>
   <body onload="init()">
   
- 
+ <span><b>CRI</b>
   <canvas id="cri" width='200px' height='200px'></canvas>
 
-  
+</span>
+
+  <span><b>Mid Tide</b>
   <canvas id="midtide" width='200px' height='200px'></canvas>
+</span>
+<span><b>Long Tide</b>
   <canvas id="longtide" width='200px' height='200px'></canvas>
-  
+  </span>
   </body>
 </html>
