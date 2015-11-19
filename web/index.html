@@ -7,7 +7,14 @@
     
     
     <style>
+.frequency {
+ float:left;
+}
 
+.name {
+text-align: center;
+font-family: sans-serif;
+}
   </style> 
   
 <script>
@@ -177,16 +184,20 @@ function draw_longtide() {
   </head>
   <body onload="init()">
   
- <span><b>CRI</b>
+ <div class="frequency">
   <canvas id="cri" width='200px' height='200px'></canvas>
+    <div class="name">CRI</div>
+</div>
 
-</span>
-
-  <span><b>Mid Tide</b>
+  <div class="frequency">
   <canvas id="midtide" width='200px' height='200px'></canvas>
-</span>
-<span><b>Long Tide</b>
+    <div class="name">Mid Tide</div>
+</div>
+
+<div class="frequency">
   <canvas id="longtide" width='200px' height='200px'></canvas>
-  </span>
+<div class="name">Long Tide</div>
+  </div>
+
   </body>
 </html>
